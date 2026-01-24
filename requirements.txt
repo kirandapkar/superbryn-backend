@@ -1,0 +1,12 @@
+livekit
+livekit-agents
+livekit-plugins-deepgram
+livekit-plugins-cartesia
+livekit-plugins-openai
+supabase
+python-dotenv
+requests
+aiohttp
+flask
+flask-cors
+
