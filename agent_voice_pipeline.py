@@ -19,7 +19,7 @@ from livekit.agents import (
     cli,
 )
 from livekit import agents, rtc
-from livekit.plugins import deepgram, cartesia, openai, google
+from livekit.plugins import deepgram, cartesia, openai
 
 # Our logic (OUTSIDE the voice pipeline)
 from agent.conversation import ConversationContext, ConversationState
