@@ -13,7 +13,13 @@ from beyond_presence_service import create_livekit_session
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend
+# Enable CORS for frontend - allow localhost and Netlify domains
+CORS(app, origins=[
+    "http://localhost:3000",
+    "http://localhost:3002",
+    "https://aiassistantspeech.netlify.app",
+    "https://*.netlify.app"  # Allow all Netlify preview deployments
+])
 
 LIVEKIT_API_KEY = os.getenv('LIVEKIT_API_KEY')
 LIVEKIT_API_SECRET = os.getenv('LIVEKIT_API_SECRET')
