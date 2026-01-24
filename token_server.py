@@ -101,12 +101,15 @@ def create_avatar_session():
         })
 
 if __name__ == '__main__':
-    PORT = 5001
-    print(f"🔐 Token Server starting on http://localhost:{PORT}")
+    # Use Railway's PORT if available, otherwise default to 5001 for local dev
+    PORT = int(os.getenv('PORT', 5001))
+    print(f"🔐 Token Server starting on port {PORT}")
     print(f"📡 LiveKit URL: {LIVEKIT_URL}")
     print(f"🎭 Beyond Presence Avatar: {BEYOND_PRESENCE_AVATAR_ID}")
     print(f"💡 Frontend endpoints:")
-    print(f"   - http://localhost:{PORT}/token")
-    print(f"   - http://localhost:{PORT}/avatar/create")
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+    print(f"   - /token")
+    print(f"   - /avatar/create")
+    # Disable debug mode in production (Railway sets RAILWAY_ENVIRONMENT)
+    debug_mode = os.getenv('RAILWAY_ENVIRONMENT') is None
+    app.run(host='0.0.0.0', port=PORT, debug=debug_mode)
 
