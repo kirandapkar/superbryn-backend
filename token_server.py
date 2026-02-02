@@ -26,6 +26,11 @@ LIVEKIT_API_SECRET = os.getenv('LIVEKIT_API_SECRET')
 LIVEKIT_URL = os.getenv('LIVEKIT_URL')
 BEYOND_PRESENCE_AVATAR_ID = os.getenv('BEYOND_PRESENCE_AVATAR_ID', '2bc759ab-a7e5-4b91-941d-9e42450d6546')
 
+@app.route('/')
+def root():
+    """Root route so we can confirm this is the token server (not the worker)."""
+    return jsonify({'service': 'token-server', 'status': 'ok', 'endpoints': ['/token', '/health', '/avatar/create']})
+
 @app.route('/token', methods=['POST'])
 def generate_token():
     """Generate a LiveKit access token for the frontend"""
